@@ -1,0 +1,558 @@
+
+TUSBAudio - Thesycon USB Audio 2.0 Class Driver for Windows
+
+Revision History
+
+
+-----------------------------------------------------
+V5.12.0 (May 18, 2021)
+-----------------------------------------------------
+
+* New: MIDI pipe statistics in the Spy utility
+
+* New: several registry parameters for MIDI added 
+
+* Fix: switch preferred ASIO buffer size with driver package containing MIDI only and audio devices
+
+* Chg: MIDI RX now uses USB flow control
+
+* Chg: improved ISO packet error check
+
+* Chg: scripts use Python 3.9.1 now
+
+* Chg: DCK needs Windows 10 now
+
+* Chg: documentation
+
+* Chg: one channel can be part of more than 4 sound devices now
+
+
+-----------------------------------------------------
+V5.0.0 (December 04, 2020)
+-----------------------------------------------------
+
+* New: support for Windows 10 (2009/20H2)
+
+* Fix: "ExposeToAsio" registry value in VirtualChannelProfiles
+
+* New: API version 5.7, some API functions added
+
+* New: several registry parameters added
+
+* New: WDM sound device profile switching
+
+* New: hardware channels can be hidden now
+
+* New: USB audio float format support
+
+* New: ASIO DLL now supports "AsioHide" parameter
+
+' New: ASIO future extension allows to get access to hidden channels
+
+* Chg: reduced default StreamingBufferMaxDuration from 4ms to 1ms
+
+* Chg: documentation
+
+
+-----------------------------------------------------
+V4.86.0 (June 19, 2020)
+-----------------------------------------------------
+
+* New: support for Windows 10 (2004/VB)
+
+* New: Added API function TUSBAUDIO_GetExtendedInfo,
+       API version 5.5
+
+* New: optimized performance of the optional DSP mixer plugin
+
+* New: ASIO extension to report device details: thesycon_asio_ext_usb.h
+
+* Chg: fixed ASIO to USB buffer count mapping
+
+* Chg: avoid stop raise condition in ASIO DLL if buffer switch consumes 100% CPU load
+
+* Chg: TUSBAudioDfu utility: added *.tlimg to the DFU file open dialog
+
+* Chg: ASIO position jumps forward if a drop out occurred.
+       So position always reflects device stream position.
+
+* Chg: After a dropout occurred, ASIO buffer switch callbacks 
+       will not be issued in a loop to catch up, instead missed 
+       callbacks will simply be skipped.
+
+* Chg: converted to VS2019 project files (SDK)
+
+
+-----------------------------------------------------
+V4.82.0 (January 16, 2020)
+-----------------------------------------------------
+
+* Fix: XMOS firmware detection for DFU update
+
+* Fix: KS child PDO hardware ID does not include REV code
+
+
+-----------------------------------------------------
+V4.80.0 (December 02, 2019)
+-----------------------------------------------------
+
+* New: support for Windows 10 (1909/19H2)
+
+* New: added mixer app channel count limit and make it configurable through .xml file
+
+* New: added additional optional driver interface GUID
+
+* New: added sample rate selection page in control panel app
+
+* New: registry parameter AllowSampleRateSwitchPerApiIfAsioIsActive
+
+* New: Added API function TUSBAUDIO_GetControlPanelOptions,
+       API version 5.4
+
+* New: added support for Audio Class 1.0 notification endpoint (e.g. volume/mute changes),
+       API version 5.3
+
+* New: added UAC1DefaultSampleRate registry parameter to define default sample rate for Audio Class 1.0 device
+
+* Fix: for Audio Class 1.0 devices streaming did not start after power down / power up
+
+* Chg: Audio Class 1.0 notification endpoint handler now sends a GET_STAT or GET_MEM request
+
+* Chg: Windows shows an error message if sample rate cannot be set 
+       because another sound device which depends on the same 
+       clock source is currently in use
+       
+* Chg: added DFUProtocol registry parameter
+
+* Chg: DFU now works with different PIDs in application and DFU mode
+
+* Chg: DFU detach request now supported
+
+* Chg: DFU application now supports different target index values ("TargetIndex" attribute in .xml file)
+
+* Chg: increased DFU timeout from 5 seconds to 30 seconds
+
+
+-----------------------------------------------------
+V4.67.0 (May 21, 2019)
+-----------------------------------------------------
+
+* New: support for Windows 10 (1903/19H1)
+
+* Chg: Scripts use Python 3.7.3 now
+
+* New: added latency reported by the device latency control to the Spy tool statistics
+
+* New: Added registry key for unit configuration
+
+* New: Added ASAltSettingsMaskIn, ASAltSettingsMaskOut, 
+       UAC1SendSetSampleRateIn and UAC1SendSetSampleRateOut registry parameters
+
+* New: added registry configuration parameter CreateSoundDevicesInDsdMode
+
+* Chg: Added KsSampleRateControl registry parameter to configure how the KS sound devices are build
+
+* Chg: Added SetInterfaceRequestTimeout registry parameter to configure timeout for USB SET_INTERFACE request
+
+* Fix: TUSBAUDIO_SetSampleRate() and TUSBAUDIO_SetCurrentClockSource()
+       fail if no streaming interface is present
+
+* Fix: device with no streaming interface leads to empty sample rate list
+
+* Chg: no endian conversion for 64-bit DSD format (UAC3)
+
+* New: native DSD format described in the user manual
+
+* Chg: Prefer 64-bit DSD format (UAC3) over 32-bit DSD format (XMOS)
+
+* New: Mixer API and documentation: TUsbAudioMixer.h
+
+* New: Mixer app refactored to integrate new API and 
+       implement separate dialogs for Full and Simple layout
+
+* Fix: Mixer app crashes when device is removed while
+       level pop-up dialog is open
+
+
+-----------------------------------------------------
+V4.59.0 (January 17, 2019)
+-----------------------------------------------------
+
+* New: support for Windows 10 (1809/RS5)
+
+* New: support clock selector notifications from the the device
+
+* New: sound device configuration now allows use of the same physical channel in different sound devices in parallel
+
+* Fix: problem in KS MIDI processing function
+
+* Fix: TUSBAUDIO_QueryDeviceStatistics can cause the calling app to crash
+
+* Chg: build environment switched to Visual Studio 2017 with WDK 1709
+
+* Chg: documentation
+
+
+-----------------------------------------------------
+V4.55.0 (November 09, 2018)
+-----------------------------------------------------
+
+* Fix: ASIO device selection does not work on some systems
+
+* Fix: default sound device creation algorithm created an empty format list
+
+
+-----------------------------------------------------
+V4.54.0 (November 06, 2018)
+-----------------------------------------------------
+
+* Fix: descriptor parser reads from a position past descriptor limit 
+       if the device implements a MIDI AC only
+
+* Fix: bring ASIO settings dialog in foreground does not work in all cases
+
+* Chg: upgraded to ASIO SDK 2.3.1
+
+* Fix: overwriting feature unit ID does not work correctly
+
+* Chg: added mixer control panel customization options
+
+* Fix: propose format property overrides other properties
+
+* Chg: added registry keys MaxBitsPerSample, Emulate16bitFormat and Emulate24bitFormat per sound device
+
+* Fix: feature unit override per registry does not support master channel
+
+* Chg: removed per-channel registry settings VolumeControl and MuteControl
+
+* Chg: added MinSampleRate and MaxSampleRate registry parameter to Windows sound device configuration
+
+
+-----------------------------------------------------
+V4.47.0 (July 31, 2018)
+-----------------------------------------------------
+
+* Chg: QPC runtime measurement added again
+
+* Fix: Spy tool doesn't work correctly with virtual channels
+
+* Chg: improved Spy tool statistics
+
+* Chg: API version 5.2
+
+* New: API function TUSBAUDIO_QueryDeviceStatistics added
+
+
+-----------------------------------------------------
+V4.46.0 (July 24, 2018)
+-----------------------------------------------------
+
+* New: Workaround for driver unload problems (Code 38 in device manager)
+       caused by KS layer leaking references on our child PDO.
+       Registry parameter EnableLeakedPdoRefsWorkaround (true by default)
+
+* New: Added optional PreferDeviceInfo to the KS .inf to use string descriptor of
+       the audio control interface if exists or product string of the device
+       for device description instead of the one from the .inf file
+
+* Fix: Crash occurs if feature unit is specified explicitly via .inf file
+
+* Fix: Linker optimization eliminated gDriverVersionString which we want to keep in the .sys
+
+
+-----------------------------------------------------
+V4.45.0 (June 18, 2018)
+-----------------------------------------------------
+
+* New: support for Windows 10 (1803/RS4)
+
+* Chg: volume input/output channel names now customizable in control panel
+
+* Chg: ASIO device is now selectable, new API functions:
+       TUSBAUDIO_SetPreferredASIODevice, TUSBAUDIO_ClearPreferredASIODevice
+       
+* Fix: volume control for device with master only control was not working
+
+
+* Fix: sound device name, visible via DirectKS now uses the string from the USB terminal/control interface
+
+
+-----------------------------------------------------
+V4.43.0 (March 28, 2018)
+-----------------------------------------------------
+
+* New: added DisableGetProposeDataFormatIN and DisableGetProposeDataFormatOUT
+       registry parameter to disable GetProposeDataFormat handler in KS
+       
+* New: added registry parameter to configure default sound device category and name
+       (DefaultSoundDeviceIN and DefaultSoundDeviceOUT)
+
+
+-----------------------------------------------------
+V4.42.0 (March 22, 2018)
+-----------------------------------------------------
+
+* Fix: processing did not recover correctly from stream errors
+
+* Fix: BSOD in KS driver error handling
+
+* Fix: DSP load mixer weights ignores default initialization
+
+* Fix: DSP mixer weights not saved in registry on system reboot
+
+* Fix: auto mode with alternate settings containing different channel counts and
+       USB valid alternate setting request supported by the device
+
+
+-----------------------------------------------------
+V4.41.0 (February 15, 2018)
+-----------------------------------------------------
+
+* New: Emulate16bitFormatIn/Out and Emulate24bitFormatIn/Out config settings
+
+* New: DSD stream format defined in the USB audio class 3.0 is supported,
+       see Frmts30.pdf, section 2.3.1.6.5
+
+* New: VALID_ALT_SETTINGS control is used (if implemented by the device)
+       to auto-select alt setting based on sample rate
+
+* New: VALID_ALT_SETTINGS control notifications supported,
+       notification triggers stream restart and ASIO reset
+       
+* Fix: automatic alternate setting selection mode didn't work in all case
+       if the device has external clock sources
+
+
+-----------------------------------------------------
+V4.40.0 (January 25, 2018)
+-----------------------------------------------------
+
+* Fix: level meter for virtual channels didn't work correctly in the mixer application
+
+* Fix: cleanup if DriverEntry fails
+
+* Fix: software loopback path issue in DSP plugins
+
+
+* Chg: Windows mono recording devices now show full list of formats
+
+* Chg: volume controls for an odd number of channels are now shown in the control panel
+
+
+-----------------------------------------------------
+V4.38.0 (December 05, 2017)
+-----------------------------------------------------
+
+* Fix: mixer app weight update issue
+
+
+-----------------------------------------------------
+V4.37.0 (November 30, 2017)
+-----------------------------------------------------
+
+* New: support for Windows 10 (1709/RS3)
+
+* Fix: sound devices with virtual channels are not shown
+
+* Chg: Microsoft signing now with symbols (DCK)
+
+
+-----------------------------------------------------
+V4.36.0 (November 08, 2017)
+-----------------------------------------------------
+
+* Chg: removed Company from version resources
+
+* Fix: GetProposeDataFormat now reports 2 channels for speaker device to work again
+       with speaker sound devices with more than 8 channels
+
+
+-----------------------------------------------------
+V4.35.0 (October 26, 2017)
+-----------------------------------------------------
+
+* Fix: reported current sample rate for Audio Class 1.0 device was not correct
+
+* Fix: 32bit ASIO DLL was not registered on 64bit systems (introduced in 4.34)
+
+
+-----------------------------------------------------
+V4.34.0 (October 16, 2017)
+-----------------------------------------------------
+
+* Chg: added sample rate unit string for status page and changed sample rate strings
+
+* Chg: ASIO DLL now optional in DCK scripts
+
+* Fix: default ASIO channel names begins with index 1 instead of 0
+
+* Fix: control panel clock source poll timer kill exception
+
+
+-----------------------------------------------------
+V4.33.0 (October 11, 2017)
+-----------------------------------------------------
+
+* Fix: customized strings are not shown correctly in the control panel and DFU app
+
+* Chg: python scripts of the DCK now support pathnames longer than 260 characters
+
+
+-----------------------------------------------------
+V4.32.0 (October 10, 2017)
+-----------------------------------------------------
+
+* Chg: statistics extended
+
+* Chg: ASIO switch IOCTL optimized
+
+* Fix: ASIO reset loop if buffer switch is blocked
+
+* Fix: ASIO DLL internal settings struct was not synchronized
+
+
+-----------------------------------------------------
+V4.30.0 (September 29, 2017)
+-----------------------------------------------------
+
+* New: sample rates higher 192kHz now supported on Windows 7 for WASAPI exclusive mode applications
+
+* New: ASIO to USB buffer size mappings now can be configured through registry
+
+* Chg: external clock source handling changed, clock source notifications now supported
+
+* New: registry option ClockSourceSupportsNotifications
+
+* New: API function TUSBAUDIO_GetClockSourceStatus
+
+* New: notification NotifyEvent_AsioBufferSizeChanged added
+
+* New: ASIO channel setup now can be configured through registry
+
+* Chg: language customization format of control panel and DFU application changed
+
+* New: added MinAsioBufferSize_48k and MaxAsioBufferSize_48k registry parameters
+       to limit the ASIO buffer size
+
+* Chg: USB interface blocking is supported in device instance registry key only, 
+       not in service key, iAP interface will be blocked by default
+
+* New: user manual significantly improved and enhanced
+
+* Chg: ASIO now reports a range of buffer sizes (can be disabled through registry key)
+
+* Fix: ASIO thread priority now set before first ASIO buffer switch
+
+* Fix: current ISO buffer was not released in stop stream
+
+* New: two different ASIO buffer size modes:
+       - multiply ASIO buffer size if sample rate is changed
+       - constant ASIO buffer size if sample rate is changed
+       
+* New: added optional additional USB out buffer to full-fill Ableton Live CPU load simulator
+       (this adds extra latency to the OUT path if enabled)
+       
+* New: added script support for APOs
+     
+* Chg: streaming buffer size change does no longer destroy and recreate child PDO
+       and MIDI ports (dynamic MIDI ports cannot be handled by all apps properly)
+
+* Chg: increased ASIO thread priority to 26
+
+* New: added kThesyconAsioSetThreadBasePrio ASIO future request
+
+* Fix: volume control slider in control panel was not always in correct position
+
+* Chg: include USB product string in default MIDI names
+
+* New: 384k and 352.8k sample rate supported on Win10
+
+* Chg: registry parameter Disable200kHzLimit removed
+
+* New: support for Windows 10 (1703/RS2)
+
+* New: device latency now can be overwritten through registry
+
+* Chg: ASIO implementation improved: latency reduced by one ASIO buffer size
+
+* Chg: ASIO buffer setting redesigned, USB buffer setting removed
+
+* Chg: API function TUSBAUDIO_GetUsbStreamingMode, TUSBAUDIO_SetUsbStreamingMode, TUSBAUDIO_GetMinimumASIOBufferSize,
+       TUSBAUDIO_GetASIOBufferSize and TUSBAUDIO_SetASIOBufferSize removed
+       
+* New: API function TUSBAUDIO_GetASIOInstanceInfo and TUSBAUDIO_SetASIOBufferPreferredSize added
+
+
+-----------------------------------------------------
+V4.14.0 (September 06, 2017) 
+-----------------------------------------------------
+
+* Chg: added registry key to reject lower channel counts on WDM sound devices
+
+
+-----------------------------------------------------
+V4.13.0 (July 19, 2017) 
+-----------------------------------------------------
+
+* Chg: implemented get KSPROPERTY_PIN_PROPOSEDATAFORMAT handler in KS driver
+
+
+-----------------------------------------------------
+V4.12.0 (June 29, 2017) 
+-----------------------------------------------------
+
+* New: Installer: code integrity check during installation
+
+* Chg: INF file DriverVer date/time now reflects the time when the driver 
+       package was built
+
+* Chg: Installer setup.ini uses attestation signed package for Server 2016
+
+* New: Installer supports automatic uninstallation of other driver packages via 
+       setup.ini option AdditionalSetupRegPathList
+
+* New: Installer supports custom icon shown in Apps&Features panel via
+       setup.ini option CustomUninstallIcon
+
+
+-----------------------------------------------------
+V4.11.0 (May 03, 2017) 
+-----------------------------------------------------
+
+* Fix: BSOD if a device implements a playback path only and no recording path
+
+* Fix: bug in time bomb restriction: potential infinite loop
+
+* New: IgnoreInPath/IgnoreOutPath/IgnoreFeedbackEndpoint registry 
+       parameters (used for testing purposes only)
+
+
+-----------------------------------------------------
+V4.10.0 (April 26, 2017) 
+-----------------------------------------------------
+
+* New: Workaround for "Unknown publisher" warning pop-up
+       in uninstall panel in Windows 10
+
+
+-----------------------------------------------------
+V4.0.0 (April 24, 2017) 
+-----------------------------------------------------
+
+* Chg: Thesycon handles full customization by default,
+       DSK and DCK available to customers
+
+* Chg: Driver uses new license mechanism
+
+* Fix: Conversion of 32 bit pointers in the x64 driver in case 
+       a 32 bit application uses /LARGEADDRESSAWARE
+
+* Chg: Installer setup.ini supports separate driver packages for
+       Win7 and Win10, required for new signing requirement
+       
+* Chg: Driver package now contains 32bit and 64bit API DLLs on 64bit systems
+
+* New: Registry parameters DisableKsVolMuteIn and DisableKsVolMuteOut
+
+* Chg: Debug driver uses ETW based debug traces now (requires tracecon.exe utility)
+

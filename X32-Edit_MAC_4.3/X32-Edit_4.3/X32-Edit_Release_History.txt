@@ -1,0 +1,102 @@
+Version 4.3 - release
+
+- Fix for Library AES50 crash when odd/even outs assigned to L/M or R/M
+- Matrix, M/C, and LR channels can be assigned to DCA and mute groups
+- Snippets can now contain the Stereo Bus LR switch parameter
+- Parameter Safe for control surface state
+- Removed RTP-Midi from Setup-Page
+- Preventing sleep on MAC (no App Nap)
+- Improved touch interface for all platforms
+- New preferences for Time and Data Mixer Sync 'OnConnect'
+- New preferences for 'Auto Connect' and 'Auto Sync'
+- 'Sync Direction' is saved as preference
+- Command line interface on startup with options: 
+   -n, --name      <mixername>  connect to mixer with given name
+   -i, --ipaddress <x.x.x.x>    connect to mixer with given ip address
+   -x, --sync_mixer2pc          connect and synchronize from mixer to pc
+   -p, --sync_pc2mixer          connect and synchronize from pc to mixer
+
+   -c, --console   <sceneindex> connect and load console  scene with index 0...99
+   -s, --scene     <sceneindex> connect and load edit(pc) scene with index 0...99
+   -f, --file      <scenefile>  connect and load external scene file 
+
+   -d, --default                start app with default size
+   -l, --full                   start app on full screen
+
+   -t, --standard               set standard size
+   -m, --medium                 set medium size
+   -g, --high                   set high size
+   -u, --ultra                  set ultra size
+   -z, --size      <factor>     set size to factor between 0.5 and 3.0
+   -h, --help                   print help and exit
+
+Version 4.2 - release
+
+- DCA Spill- GUI-Preference to switch off automatic DCA spill layer jump- GUI-Preference ‘Bus button names’ active by default- GUI-Preference to show DCA spill always on top- GUI-Preference to deactivate mouse wheel- Add stereolink to DP48-Remote page- Add setup option to create custom boot scene- Add SD-Recorder warning pop-up if only 10 & 1 min recording capacity left
+- Removed link option from Dual-Deesser- Show source info on left side of all effect screen- Changed inverted colors to match all console displays- Improved text button ON/OFF state for X32-Edit- Improved distinction between local and mixer data on show control pages- Improved routing tap color distinction
+- Fix for snippet index offset after show import- Fix for snippet paste issue (see above) - Fix for wrong snippet checkboxes on USER In/Out options- Fix for FX link A/B issue on scene load- Fix for bad suboctaver range switch mouse support- Fix for moodfilter tap function- Fix for show control mismatch (highlighted row for active cue/scene/snippet)- Fix for Copy/Pasting of dynamic settings for MTX/ST/M- Fix for gate/dyn key solo: set active channel and page on console- Fix for oversized app windows after restart under Windows 10 (if display scale active)
+
+
+Version 4.1 - release
+
+- fix for routing phase bug
+- fix for missing Uout/Uin strings
+- improved group name edit for aes50 page
+- draw connected aes devices on dp48 page 
+- set max preset lib type to 3 (.mon)
+- add load and save for dp48 presets (removed im/export)
+- add new 'WING' icons
+
+Version 4.0 - release
+
+- set FILEIO_HEADER_VERSION_STRING to #4.0#
+- add panFollow to send page (follow LR PAN)
+- add user pages for routing
+- add DN32WSG card graphics
+
+
+
+Version 3.2 - release
+
+- add DN32-LIVE card, remove 'X-Live' text
+- fix for preset save bug (Main/Fader scope)
+- fix for xlive user assign control (select session, marker, position)
+- change text from format to erase if sd size > 32 GB
+- add feature request 'mute send slider' colour, remove -urec/type
+- fix for pref/next marker bug
+- add Card text 'WSG' and change 'XLIVE' to 'LIVE', improved midas graphics
+- add midas graphics, fix for recorder tabbutton and timebar
+- fxtapbtn58 fix, mainsection xlive fix, prev/next marker improvement
+- add alertwin for session delete, graphic cosmetics
+- rec_control fix, add sessionoffs and 3rd sessionspan option, improved timebar handling
+- add X-WSG graphics, add format button and span control to xlivecontrol
+- improved usb recorder (touch) with new buttons from xlive
+- change FILEIO_HEADER_VERSION_STRING to #2.7#
+- add xlive recorder tab only if card inserted, fix for recorder table control (touch improve)
+- fix for rta over eq issue
+- Use latest JUCE 3 to solve touch issues and add new EQ curve ('olympic rings')
+- Version 3.1.6 - xlive: add OkCancelBox (stop rec) on dropout error message
+- add sdXstate helper "FORMAT", chanConfig routswitch update fix, next marker issue fix, add format processWindow
+- xlive: clear marker select on PLAY
+- new icons for xlive state display, add xlive control to mainsection
+- Version 3.1.5 for xlive betatest, fix for save marker and playback config switch
+- improved control page for xlive, new features and some fixes
+- improved control page for xlive, add compact mode and new graphics
+- add user assignables for xlive, todo: control for session- markerlist select and markerpos!
+- add jucer file for X32-Edit (Xlive beta test)
+- change action command clrerrorcode to clearalert
+- add urechelpers and action commands for error handling, fix for routswitch
+- add routswitch to Routing/Inputs, fix for prev/next Marker issue and timebar position
+- some new graphics for xlive, add eTime 7Segment, add some urechelper and fix prev/next issue
+- improved xlive control for betatest, second version with new parameter exchange, several fixes
+- add xlive control for betatest, fist version with batch request for sessions/markers with issues
+- fix for FX insert graphic glitch (input.cpp) and linux/mac crash on tab change (comp.cpp)
+- add separate getMidiDevices() and getMidiInputDevice(), getMidiOutputDevice to midi_com
+- try fix for midi mc MAC issue...
+- several midi mc fixes: add rude solo, add hard and dca mute blink, add home sceen action
+- autoconnect to midi mc on startup, toggle util windows from mc, remember midi in/out settings
+- fix for FX linkAB bug... hopefully, new linkIndicator icon for MIDAS version
+- use new gate/comp/eq button scheme also for utility windows
+- add Controlled Fader Bank to MidiSetup MC (default, User1/2), scenes_initializeConsoleShowData() removed on sync!
+- graphic color cosmetics, fix for active channel sof frame color
+- fix for wrong FxWindow height and wrong mainsection timebar size

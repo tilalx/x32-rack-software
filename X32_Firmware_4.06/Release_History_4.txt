@@ -1,0 +1,236 @@
+4.06 (2021-03-09)
+
+  Improvements:
+   - Matrix, M/C, and LR channels can be assigned to DCA and mute groups
+   - Snippets can now contain the Stereo Bus LR switch parameter
+   - Parameter Safe for control surface state
+   - DCA Spill doesn't move unused faders
+
+  Bug Fixes:
+   - Fixed DCA Spill color and mute group assign issues
+
+--------------------------------------------------------------------------------
+
+4.04.1 (2020-11-27)
+
+ Bug fixes:
+  - Fix for sporadic hang-up of comms with Behringer X-TOUCH controller
+
+
+4.04 (2020-11-18)
+
+ New features:
+  - DCA-Spill
+    - Press SELECT on DCA to see associated channels (flashing SELECT on DCA)
+    - Hold SELECT on DCA to change DCA assignment (flashing SELECT on channels)
+    - Press DCA layer button to toggle between DCA-Spill pages
+    - Change left fader layer or hold DCA layer button to disable DCA Spill
+      (Active DCA-Spill is indicated by flashing DCA layer button)
+       
+
+ Improvements:
+  - Improved interoperability with X-Touch 
+     - Gain/Trim issue on CH 1-8
+     - Issue with send pan indication when using sendPanFollowsLR 
+  - Improved Copy/Pasting of dynamic settings for MTX/ST/M
+
+ Bug fixes:
+  - Prevent freeze when using Snippet-Utility
+  - Fixed send pan LED-Ring indication when using sendPanFollowsLR
+  - Hide folder names with non ASCII characters
+
+--------------------------------------------------------------------------------
+
+4.03 (2020-10-06):
+
+  New features:
+  - variable scrolling speed for spectrograph
+  - Library AES50
+     - DP48 remote support for stereo link & talkback messages
+     - improved transmission of DP48 messages through stageboxes and hubs
+ 
+  Improvements:
+  - Channel
+    - bring pan back to center when unlinking (if +-100) 
+  - X-Live-Card:
+    - show warning when SD card is close to maximum capacity (10min / 1min remaining)
+    - showing protected SD card state
+  - better backup progress bar
+  - showing naming prompt when exporting a scene to USB
+  - better support when importing a CustomBootState as a scene
+  - CustomBootState can now be auto-loaded without a confirm dialog (append _NoPopUp to the filename)
+  - hold and scroll on snippets/safes
+  - added name prompt when exporting to USB
+  
+ 
+  Bug fixes:
+  - HA gain control not updating digital trim when using User-Banks
+  - Fixed long Session-Name display
+  - Fixed show import/export popup text redrawing
+  - checking User-Blocks param safe and scene safe when loading an old scene 
+ 
+
+--------------------------------------------------------------------------------
+
+4.02 (2020-01-21):
+
+  New features:
+  - Welcome-Screen on first power up after an update (Select the Firmware header on Setup-Global page to display again)
+  - CustomBootScene.scn can be loaded automatically at bootup and created in the Setup-Global page (also on X32Core/M32C)
+  - CustomLock.bmp and CustomBoot.bmp support (see examples on www.behringer.com)
+  - Routing-Input: cycle through the connected AES devices using the Up/Down arrows
+  - X32Core/M32C: Console backup export and load
+
+
+  Improvements:
+  - M32/R : faderboard firmwares reviewed for better behaviour on both slow and fast speeds
+  - showing insert/source details on effects screen
+  - improved conversion of input clocks to user slots (Routing-User In-Utility-6th button)
+  - pressing Select and Utility opens the Name/Icon screen
+  - Xlive locator can be moved using the transport encoders
+  - showing a dialog when trying to use the USB recorder when no USB drive is inserted
+  - updating the TopLeft selected channel box when a popup is shown on screen
+  - added header line to the console.bak file
+  - X32Core/M32C: Error screen when an export fails
+  
+
+
+  Bug fixes:
+  - Channel
+      - preventing copied channel window to redraw when copying remotely
+      - Config: changed INHP label to IN/LC
+      - EQ: fixed crossover band type name display and coloured frames redraw
+  - X-Live-Card:
+      - redrawing utility header on session selection
+      - changed the scrub function icon
+      - disabling transport buttons when Mute Groups are open
+      - better SD info redraw when popups are shown
+  - Routing-Input: redrawing connected AES devices when they change
+  - fixed snippet FX4R selection
+  - fixed channel source display when Aux1 is set to AES50 33
+  - fixed recorder text display on the top of the screen
+  - fixed gain control offset-issue from X-Touch using User-Input
+  - user assign section shows SD session/markers properly
+  - reset User-Blocks when loading scene created with former parameter set
+
+
+
+--------------------------------------------------------------------------------
+
+4.01 (2019-12-06):
+
+  New features:
+  - fast faders option on M32/M32R
+  - dual FX engines copy A->B and B->A
+  - added additionnal FW integrity check after update (prevents soft bricking)
+  - convert Input banks to user slots (in Routing-Input-Utility 6th encoder)
+  - Show control buttons assignable to User assigns (NEXT, PREV, UNDO, and GO)
+
+
+  Bug fixes:
+  - Card
+      - fixed Card In/Out pops and cracks
+      - Xlive: 
+         - fixed freezing when stopping recording
+         - correcting setting display on 1st screen
+         - cant delete empty session anymore
+         - confusing SD card status display fixed
+      - Dante: preventing white noise when clock frequencies are mismatched
+  - Routing
+      - HA remote availability when forwarding connected HA (for ex, in Stagebox -> MonitorMixer -> FOH configuration)
+      - corrected source display when AuxIn assigned to Local In
+      - corrected routing screen names (for user assign-jump to page / osc screen polling)
+      - input patch overview header changed
+  - Effects
+      - fixed LC curve/sends faders redrawing on FX screens
+      - fixed utility FX rack jumping around when selecting actual FX engine
+  - Library
+      - importing files (presets/show/...) made prior to 2.1 works again
+      - preset number 100 was shown as 10
+  - Xtouch display corrected (DCA scribstrips update, user slot source display)
+  - inverted "wedge L/R" icon to match scrible strip
+  - Snippet-Utility better redraw
+  - corrected gain reduction scales (chan Gate/Dyn, meters)
+  - TB destination Bus 10 was showing "Bus1"
+
+
+  Improvements:
+  - Channel
+      - confirmation dialog when pasting/loading HA config with +48V activated
+      - improved Bus-Config send configuration list
+  - Card
+      - Xlive session name shown again
+      - Dante help text now mentions "Enable Sync to external" setting
+  - Setup
+      - better Name suggestion / Icon scrolling interaction
+      - updating Name/Icon screen on remote changes
+      - factory reset sets TB to external
+  - Routing
+      - Output destination and tap are not set at the same time anymore
+  - Library
+      - FX library tables reviewed
+      - added default monitor presets to factory reset
+  - Monitor
+      - changed oscillator destination order to previous one
+  - Keyboard
+      - keyboard wraps fully (not just line to line)
+      - new folder name can now have numbers, dash and underscore (no other symbol allowed)
+      - reduced flickering on symbols page
+      - reseting Name/Note button on scene save
+  - OSC protocol
+      - "-action/setposition 0" is possible
+
+
+
+--------------------------------------------------------------------------------
+
+4.00 (2019-11-13):
+
+  new features:
+  - point to point user routing, 4 input and 6 output banks (32 in / 48 out)
+  - DP48/HUB4 remote configuration support
+  - DP48 setup page with preset library
+  - send pan optionally follows LR pan function
+  - full backup export/restore function
+  - new keyboard with channel name suggestions/history and keyboard layouts
+  - X32Core/M32C: Export Show function
+  - M32/M32R: V.1 Fader option (forces update of faderboards, requires reboot)
+  - option for coloured RTA bars
+
+
+  improvements:
+  - new GUI design
+  - updated channel icons
+  - coloured fader tracks
+  - error/warning popups can be closed using encoders
+  - popup option to perform backup before firmware update
+  - Channel
+      - Config: Low Cut filter curve preview
+      - Config/Sends: Dynamic signal flow display
+      - EQ: hiding unsettable parameters
+      - Utility: copied channel overview
+  - Meters
+      - channel color indicators
+  - Routing
+      - tabs re-organized and grouped by function
+      - output patch overview tables with shortcut to assign output
+      - next button also scolls destination list
+      - iQ setup: improved lists behaviour
+  - Library
+      - scrolling using LOAD encoder offers suitable presets only
+  - Effects
+      - warning message when creating feedback loop (only when using hardware encoders)
+      - Utility: FX rack re-organized by effect category
+      - Utility: copied effect preview
+      - going from effect to library selects active FX slot
+  - Setup
+      - Config: more default bus configurations (all pre/all post)
+      - Name/Icon: more channel name suggestions
+  - Monitor
+      - Talkback: destination preview
+      - Lamp setting moved to new tab in Monitor screens (when available)
+  - Scenes
+      - Cues: cue number 500.9.9 is possible now
+      - Snippets/Safes: select header to select all elements in column
+  - Mute Groups
+      - buttons made more visible on screen
